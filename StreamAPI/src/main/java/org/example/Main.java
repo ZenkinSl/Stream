@@ -5,11 +5,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        Random r = new Random();
-        int[] massOfInt = new int[20];
-        for(int i = 0; i < 20;i++) {
-            massOfInt[i] = r.nextInt(100);
-        }
+        int[] massOfInt = getIntArray(0,100,20);
         List<Integer> sortMass = Arrays.stream(massOfInt)
                 .distinct()
                 .mapToObj(n -> {
@@ -31,11 +27,33 @@ public class Main {
                 .collect(Collectors.toList());
                 System.out.println(sortMass);
 
+        int[] intArray = getIntArray(20,100,30);
+        System.out.println(Arrays.stream(intArray).boxed().collect(Collectors.toList()));
+        List<Integer> listDoubles = Arrays.stream(intArray)
+                .boxed()
+                .collect(Collectors.groupingBy(n-> n, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(m->m.getValue()>1)
+                .map(Map.Entry::getKey)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+        System.out.println(listDoubles);
+
+
     //Создать массив из целых чисел размером в 30 заполненный числами от 20 до 100
 
     //взять из него только те числа которые повторяются
     //собрать их в коллекцию отрортировав в порядке убывания
     }
 
+    public static int[] getIntArray(int lowBound, int highBound, int size){
+        Random r = new Random();
+        int[] massOfInt = new int[size];
+        for(int i = 0; i < size;i++) {
+            massOfInt[i] = r.nextInt(highBound-lowBound)+lowBound;
+        }
+        return massOfInt;
+    }
 
 }
