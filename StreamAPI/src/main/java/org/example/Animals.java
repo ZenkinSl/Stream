@@ -4,7 +4,7 @@ public class Animals {
     String name;
     String species;
 
-    public move(){
-        
+    public void move(){
+
     }
 }
