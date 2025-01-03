@@ -56,4 +56,7 @@ public class Main {
         return massOfInt;
     }
 
+    //TO DO
+    //Создать или перенести класс "Животные", с полями "Имя", "Вид" и Метод Move
+
 }
