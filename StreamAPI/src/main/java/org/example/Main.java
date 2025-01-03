@@ -2,31 +2,10 @@ package org.example;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
-        int[] massOfInt = getIntArray(0,100,20);
-        List<Integer> sortMass = Arrays.stream(massOfInt)
-                .distinct()
-                .mapToObj(n -> {
-                    if(n % 3 == 0 & n % 5 == 0){
-                    System.out.println(n + " делится на 3 и на 5");
-                    return n;
-                }
-                else if(n % 3 == 0){
-                    System.out.println(n + " делится на 3");
-                    return n;
-                }
-                else if(n%5 == 0){
-                    System.out.println(n + " делится на 5");
-                    return n;
-                }
-                    return 0;
-                })
-                .filter(n -> n != 0)
-                .collect(Collectors.toList());
-                System.out.println(sortMass);
-
         int[] intArray = getIntArray(20,100,30);
         System.out.println(Arrays.stream(intArray).boxed().collect(Collectors.toList()));
         List<Integer> listDoubles = Arrays.stream(intArray)
@@ -38,13 +17,8 @@ public class Main {
                 .map(Map.Entry::getKey)
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
-        System.out.println(listDoubles);
+       countCharInString("best joke");
 
-
-    //Создать массив из целых чисел размером в 30 заполненный числами от 20 до 100
-
-    //взять из него только те числа которые повторяются
-    //собрать их в коллекцию отрортировав в порядке убывания
     }
 
     public static int[] getIntArray(int lowBound, int highBound, int size){
@@ -54,6 +28,24 @@ public class Main {
             massOfInt[i] = r.nextInt(highBound-lowBound)+lowBound;
         }
         return massOfInt;
+    }
+
+    public static void countCharInString(String inputString){
+        char[] myCharArray = inputString.toCharArray();
+        Stream myStream = Arrays.stream(myCharArray);
+        Map<Character, Long> mapOfChar = inputString.chars()
+                .mapToObj(s -> (char) s)
+                .collect(Collectors.groupingBy(n-> n, Collectors.counting()));
+                mapOfChar.forEach((charIntString,count) -> System.out.println(charIntString + " " + count));
+                System.out.println(mapOfChar);
+
+    }
+    private static char[] makeStringInCharArray(String stringMakeStringArray){
+        char[] massOfCharInString = new char[stringMakeStringArray.length()];
+        for (int i = 0;i < massOfCharInString.length;i++){
+            massOfCharInString[i] = stringMakeStringArray.charAt(i);
+        }
+        return massOfCharInString;
     }
 
 }
