@@ -9,5 +9,8 @@
         <module name="StreamAPI" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="StreamAPI" target="20" />
+    </bytecodeTargetLevel>
   </component>
 </project>
